@@ -1,4 +1,4 @@
-export default function App() {
+function App() {
   return (
     <>
       <h1>Hello Homework 2!</h1>
