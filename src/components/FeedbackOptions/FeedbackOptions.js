@@ -1,4 +1,5 @@
 import PropTypes from 'prop-types';
+// import { v4 as uuidv4 } from 'uuid';
 
 const FeedbackOptions = ({ options, onLeaveFeedback }) => {
   const arrState = Object.keys(options);
