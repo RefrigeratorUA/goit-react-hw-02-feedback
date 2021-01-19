@@ -1,38 +1,21 @@
 import { Component } from 'react';
-import PropTypes from 'prop-types';
 import FeedbackOptions from './components/FeedbackOptions/FeedbackOptions';
 import Statistics from './components/Statistics/Statistics';
 import Section from './components/Section/Section';
 import Notification from './components/Notification/Notification';
 
 export default class App extends Component {
-  static defaultProps = {
+  state = {
     good: 0,
     neutral: 0,
     bad: 0,
   };
 
-  static propTypes = {
-    good: PropTypes.number,
-    neutral: PropTypes.number,
-    bad: PropTypes.number,
+  updateCount = feedback => {
+    this.setState(prevState => ({ [feedback]: prevState[feedback] + 1 }));
   };
 
-  state = {
-    good: this.props.good,
-    neutral: this.props.neutral,
-    bad: this.props.bad,
-  };
-
-  updateCount = prop => this.setState(({ [prop]: prevState }) => ({ [prop]: prevState + 1 }));
-
-  countTotalFeedback = () => {
-    let total = 0;
-    for (let key in this.state) {
-      total += this.state[key];
-    }
-    return total;
-  };
+  countTotalFeedback = () => Object.values(this.state).reduce((acc, value) => acc + value, 0);
 
   countPositiveFeedbackPercentage = () => {
     return this.countTotalFeedback()
